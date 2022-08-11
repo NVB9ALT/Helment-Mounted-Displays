@@ -1,5 +1,5 @@
 function runHMDs() {
-var hmdIsActive = 0;
+var hmdIsActive = new Boolean(0);
 geofs.animation.values.hmdShow = null;
 //this is basically the 2.9 HUD, but without the attitude display.
 instruments.definitions.helmetMountedDisplay = {
