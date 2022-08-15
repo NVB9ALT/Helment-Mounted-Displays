@@ -1,4 +1,3 @@
-function runHMDs() {
 var hmdIsActive = new Boolean(0);
 geofs.animation.values.hmdShow = null;
 //this is basically the 2.9 HUD, but without the attitude display.
@@ -158,4 +157,3 @@ if (geofs.camera.definitions["cockpit"].orientations.current[0] >= 15 || geofs.c
    hmdIsActive = 0
    }
 };checkITint = setInterval(function(){checkIT()},1000);
-}
