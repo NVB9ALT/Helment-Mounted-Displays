@@ -89,15 +89,19 @@ if ((geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.refe
 var lastLLA = [e.referencePoint.lla[0],e.referencePoint.lla[1]]
 if (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617) {
 setTimeout(() => {
-	if (radToHdg(getBearing((lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]))) + radToHdg(geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) <= 5 && radToHdg(getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1])) - radToHdg(geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) >= 5 && e.id != shotDownUser) {
+	if (radToHdg(getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1])) + radToHdg(geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) <= 5 && radToHdg(getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1])) - radToHdg(geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) >= 5 && e.id != shotDownUser) {
 crashAircraft()
 audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
 audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
 ui.notification.show("You were shot down by " + e.callsign)
 console.log("shootdown")
 	}
+console.log("Radians user heading: " + getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]))
+console.log("User heading: " + radToHdg(getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1])))
+console.log("My heading: " + radToHdg(geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])))
 },1000)
 }
+console.log("Aircraft ID: " + e.aircraft)
    }
 	})
 };
