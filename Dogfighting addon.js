@@ -82,7 +82,7 @@ if ((geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.refe
 var lastLLA = [e.referencePoint.lla[0],e.referencePoint.lla[1]]
 if (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617) {
 setTimeout(() => {
-	if (getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]) + geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1]) <= 5 && getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]) - geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1]) >= 5 && e.id != shotDownUser) {
+	if (getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]) + geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1]) <= 5 && getBearing(lastLLA[0], lastLLA[1], e.referencePoint.lla[0], e.referencePoint.lla[1]) - geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1]) >= -5 && e.id != shotDownUser) {
 	if (shootdownNotification == 0) {
 shootdownNotification = 1
 crashAircraft()
