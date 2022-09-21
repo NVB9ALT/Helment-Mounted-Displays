@@ -1,3 +1,66 @@
+//Add a Huey with guns (as an option)
+geofs.animation.values.gunsOn = null;
+function gunSound() {
+if (geofs.animation.values.groundContact == 0 && geofs.animation.values.brakes == 1) {
+   if (geofs.aircraft.instance.id == 7 || geofs.aircraft.instance.id == 18 || geofs.aircraft.instance.id == 15 || geofs.aircraft.instance.id == 2581 || geofs.aircraft.instance.id == 2808 || geofs.aircraft.instance.id == 3591 || geofs.aircraft.instance.id == 4172 || geofs.aircraft.instance.id == 3617 || geofs.aircraft.instance.id == 4251) {
+	geofs.animation.values.gunsOn = 1
+   audio.impl.html5.playFile("https://142420819-645052386429616373.preview.editmysite.com/uploads/1/4/2/4/142420819/mirage-2000_sounds_m-2000-guns.wav")
+}
+//this is the special one...
+   if (geofs.aircraft.instance.id == 2310) {
+geofs.animation.values.gunsOn = 1
+audio.impl.html5.playFile("https://142420819-645052386429616373.preview.editmysite.com/uploads/1/4/2/4/142420819/brrrt.mp3")
+}
+	} else {
+geofs.animation.values.gunsOn = 0
+	}
+};
+gunSoundInt = setInterval(function(){gunSound()},1000)
+
+//define functions
+function crashAircraft() {
+   geofs.aircraft.instance.engines.forEach(function(e){
+e.maxRPM = 1
+	})
+   new geofs.fx.ParticleEmitter({ anchor: { worldPosition: [0, 0, 0] }, duration: 1e3, rate: 0.01, life: 1e4, near: 10, startScale: 0.05, endScale: 1, startOpacity: 0.5, endOpacity: 1e-4, texture: "darkSmoke" });
+	audio.playShutdown();
+};
+function radians(n) {
+  return n * (Math.PI / 180);
+};
+function degrees(n) {
+  return n * (180 / Math.PI);
+};
+function getBearing(a, b, c, d) {
+  startLat = radians(c);
+  startLong = radians(d);
+  endLat = radians(a);
+  endLong = radians(b); 
+  let dLong = endLong - startLong; 
+  let dPhi = Math.log(Math.tan(endLat / 2.0 + Math.PI / 4.0) / Math.tan(startLat / 2.0 + Math.PI / 4.0)); 
+  if (Math.abs(dLong) > Math.PI) { 
+    if (dLong > 0.0) 
+	   dLong = -(2.0 * Math.PI - dLong); 
+    else 
+	   dLong = (2.0 * Math.PI + dLong); 
+  } 
+  return (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0;
+};
+//main function
+/*Value list of Object.values(multiplayer.visibleUsers)[0]
+e.callsign
+e.aircraft (returns id)
+e.distance
+e.referencePoint.lla[0] and [1] for lla
+e.referencePoint.lla[2] and geofs.aircraft.instance.llaLocation[2] for altitude in meters
+*/
+// map.updatePlayerMarker
+//line 21000 for multiplayer update bullshit
+
+var airToAirOn = new Boolean(0)
+var shotDownUser = null
+var shootdownNotification = new Boolean(0);
+function checkAim() {
    Object.values(multiplayer.visibleUsers).forEach(function(e){
 //If the two users are at the same altitude and within gun range (I don't want to do triginometric interpolation)
 	if (e.referencePoint.lla[2] - geofs.aircraft.instance.llaLocation[2] <= 250 && geofs.aircraft.instance.llaLocation[2] - e.referencePoint.lla[2] <= 250 && e.distance <= 1000) {
@@ -34,3 +97,5 @@ setTimeout(() => {shootdownNotification = 0},1000)
 }
    }
 	})
+};
+goInt = setInterval(function(){checkAim()},100);
