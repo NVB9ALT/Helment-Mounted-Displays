@@ -47,7 +47,7 @@ function getBearing(a, b, c, d) {
   return (degrees(Math.atan2(dLong, dPhi)) + 360.0) % 360.0;
 };
 //main function
-/*Value list of Object.values(multiplayer.visibleUsers)[0]
+/*Value list of Object.values(multiplayer.users)[0]
 e.callsign
 e.aircraft (returns id)
 e.distance
@@ -56,6 +56,7 @@ e.referencePoint.lla[2] and geofs.aircraft.instance.llaLocation[2] for altitude 
 */
 // map.updatePlayerMarker
 //line 21000 for multiplayer update bullshit
+//setInterval(function(){Object.values(multiplayer.users)[0].lastUpdate.cookie + ", " + Object.values(multiplayer.users)[0].lastUpdate.acid + ", " + Object.values(multiplayer.users)[0].lastUpdate.sid + ", " + Object.values(multiplayer.users)[0].lastUpdate.id + ", " + Object.values(multiplayer.users)[0].lastUpdate.ac + ", " + Object.values(multiplayer.users)[0].lastUpdate.co + ", " + Object.values(multiplayer.users)[0].lastUpdate.ve + ", " + Object.values(multiplayer.users)[0].lastUpdate.st.as + ", " + Object.values(multiplayer.users)[0].lastUpdate.m + ", " + Object.values(multiplayer.users)[0].lastUpdate.ci},1000)
 
 var airToAirOn = new Boolean(0)
 var shotDownUser = null
@@ -70,7 +71,7 @@ if ((geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.refe
 	    ui.notification.show("You shot down " + e.callsign)
 		 shootdownNotification = 1
 		 //This just makes sure that ui.notifications don't clog up on top of each other.
-		 setTimeout(() => {shootdownNotification = 0},1000)
+		 setTimeout(() => {shootdownNotification = 0},5000)
 	 }
 	 shotDownUser = e.id
 };
@@ -90,7 +91,7 @@ audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosi
 audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
 ui.notification.show("You were shot down by " + e.callsign)
 console.log("shootdown")
-setTimeout(() => {shootdownNotification = 0},1000)
+setTimeout(() => {shootdownNotification = 0},5000)
    }
 	}
 },1000)
