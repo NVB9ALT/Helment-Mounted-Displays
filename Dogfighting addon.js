@@ -79,7 +79,7 @@ var shootdownNotification = new Boolean(0);
 function checkAim() {
    Object.values(multiplayer.visibleUsers).forEach(function(e){
 //If the two users are at the same altitude and within gun range (I don't want to do triginometric interpolation)
-	if (e.referencePoint.lla[2] - geofs.aircraft.instance.llaLocation[2] <= 50 && geofs.aircraft.instance.llaLocation[2] - e.referencePoint.lla[2] <= 50 && e.distance <= 1000) {
+	if (e.referencePoint.lla[2] - geofs.aircraft.instance.llaLocation[2] <= 50 && geofs.aircraft.instance.llaLocation[2] - e.referencePoint.lla[2] <= 50 && e.distance <= 1000 && e.lastUpdate.st.as > 50) {
 //If you're pointed at them and shooting your gun, shoot them down
 if ((geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) <= 5 && (geofs.animation.values.heading - getBearing(e.referencePoint.lla[0], e.referencePoint.lla[1], geofs.aircraft.instance.llaLocation[0], geofs.aircraft.instance.llaLocation[1])) >= -5 && geofs.animation.values.gunsOn == 1) { //place smoke emitter on "enemy" player
 	 if (shootdownNotification == 0) {
