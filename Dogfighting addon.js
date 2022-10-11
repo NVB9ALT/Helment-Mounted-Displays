@@ -38,11 +38,10 @@ gunSoundInt = setInterval(function(){gunSound()},1000)
 
 //define functions
 function crashAircraft() {
-   geofs.aircraft.instance.engines.forEach(function(e){
-e.maxRPM = 1
-	})
    new geofs.fx.ParticleEmitter({ anchor: { worldPosition: [0, 0, 0] }, duration: 1e3, rate: 0.01, life: 1e4, near: 10, startScale: 0.05, endScale: 1, startOpacity: 0.5, endOpacity: 1e-4, texture: "darkSmoke" });
-	audio.playShutdown();
+   audio.playShutdown();
+   audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
+   audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
 };
 function radians(n) {
   return n * (Math.PI / 180);
@@ -106,8 +105,6 @@ setTimeout(() => {
 	if (shootdownNotification == 0) {
 shootdownNotification = 1
 crashAircraft()
-audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
-audio.impl.html5.playFile("https://www.shockwave-sound.com/sound-effects/explosion-sounds/damage.wav")
 ui.notification.show("You were shot down by " + e.callsign)
 console.log("shootdown")
 setTimeout(() => {shootdownNotification = 0},5000)
