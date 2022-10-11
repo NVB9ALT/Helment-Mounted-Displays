@@ -1,6 +1,6 @@
 ui.notification.show("Press shift and your brakes key to fire guns.")
 setTimeout(() => {
-ui.notification.show("You must be within a certain range and altitude of an enemy player to shoot them down or get shot down.")
+ui.notification.show("You must be within 3000 feet (1 km, 0.6 mi) and 50 meters (150 feet) altitude of an enemy player to shoot them down or get shot down.")
 },3000)
 geofs.debug.shiftIsTrue = 0
 document.addEventListener("keydown", function(e) {
