@@ -1,3 +1,4 @@
+console.log("DISCLAIMER: You use this add-on software of your own free choice. If you dislike the features this addon adds, you should not use it. Fighter weapons are not a default feature of GeoFS and never should be.")
 ui.notification.show("Press shift and your brakes key to fire guns.")
 setTimeout(() => {
 ui.notification.show("You must be within 3000 feet (1 km, 0.6 mi) and 50 meters (150 feet) altitude of an enemy player to shoot them down or get shot down.")
