@@ -1,7 +1,10 @@
 ui.notification.show("Press shift and your brakes key to fire guns.")
 setTimeout(() => {
 ui.notification.show("You must be within 3000 feet (1 km, 0.6 mi) and 50 meters (150 feet) altitude of an enemy player to shoot them down or get shot down.")
-},3000)
+},4000)
+setTimeout(() => {
+ui.notification.show("This addon assumes that the enemy player is firing their gun whenever possible. Ignore shootdowns at initial merges.")
+},10000)
 geofs.debug.shiftIsTrue = 0
 document.addEventListener("keydown", function(e) {
    if (e.keyCode == 16 || e.keyCode == 13) {
