@@ -1,26 +1,15 @@
 console.log("DISCLAIMER: You use this add-on software of your own free choice. If you dislike the features this addon adds, you should not use it. Fighter weapons are not a default feature of GeoFS and never should be.")
-ui.notification.show("Press shift and your brakes key to fire guns.")
+ui.notification.show("Press your brakes key to fire guns.")
 setTimeout(() => {
 ui.notification.show("You must be within 3000 feet (1 km, 0.6 mi) and 50 meters (150 feet) altitude of an enemy player to shoot them down or get shot down.")
 },4000)
 setTimeout(() => {
 ui.notification.show("This addon assumes that the enemy player is firing their gun whenever possible. Ignore shootdowns at initial merges.")
 },10000)
-geofs.debug.shiftIsTrue = 0
-document.addEventListener("keydown", function(e) {
-   if (e.keyCode == 16 || e.keyCode == 13) {
-geofs.debug.shiftIsTrue = 1
-	}
-	document.addEventListener("keyup", function(e) {
-if (e.keyCode == 16 || e.keyCode == 13) {
-   geofs.debug.shiftIsTrue = 0
-}
-	})
-})
 //Add a Huey with guns (as an option)
 geofs.animation.values.gunsOn = null;
 function gunSound() {
-if (geofs.animation.values.brakes == 1 && geofs.debug.shiftIsTrue == 1) {
+if (geofs.animation.values.brakes == 1 && geofs.animation.values.parkingBrake == 0 && geofs.animation.values.groundContact == 0) {
    if (geofs.aircraft.instance.id == 7 || geofs.aircraft.instance.id == 18 || geofs.aircraft.instance.id == 15 || geofs.aircraft.instance.id == 2581 || geofs.aircraft.instance.id == 2808 || geofs.aircraft.instance.id == 3591 || geofs.aircraft.instance.id == 4172 || geofs.aircraft.instance.id == 3617 || geofs.aircraft.instance.id == 4251) {
 	geofs.animation.values.gunsOn = 1
    audio.impl.html5.playFile("https://142420819-645052386429616373.preview.editmysite.com/uploads/1/4/2/4/142420819/mirage-2000_sounds_m-2000-guns.wav")
