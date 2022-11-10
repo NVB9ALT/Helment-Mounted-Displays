@@ -6,6 +6,9 @@ ui.notification.show("You must be within 3000 feet (1 km, 0.6 mi) and 50 meters 
 setTimeout(() => {
 ui.notification.show("This addon assumes that the enemy player is firing their gun whenever possible. Ignore shootdowns at initial merges.")
 },10000)
+setTimeout(() => {
+ui.notification.show("I'll make a major update soon with some exciting new features that make it MUCH easier to use!")
+},20000)
 //Add a Huey with guns (as an option)
 geofs.animation.values.gunsOn = null;
 function gunSound() {
