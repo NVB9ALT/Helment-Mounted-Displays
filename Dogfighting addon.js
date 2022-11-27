@@ -6,6 +6,7 @@ setTimeout(() => {
 console.log("DISCLAIMER: You use this add-on software of your own free choice. If you dislike the features this addon adds, you should not use it. Fighter weapons are not a default feature of GeoFS and never should be.")
 }, 10)
 //clearInterval(goInt)
+//clearInterval(gunSoundInt)
 geofs.animation.values.gunsOn = null;
 geofs.animation.values.shotDown = null;
 //This function/interval pair run on a different clock than the rest of the addon,
@@ -149,7 +150,7 @@ if (e.lastUpdate.is == 1) {
 //Run checkAim at 20 FPS/TPS/whatever, this is fast enough for it to not miss things most of the time but also not lag your computer
 goInt = setInterval(function(){checkAim()},50);
 
-clearInterval(cameraRotateInt)
+//clearInterval(cameraRotateInt)
 var needCamReset = new Boolean(0)
 function look() {
    if (geofs.camera.currentModeName == "cockpit" && geofs.animation.values.accZ >= 40) {
