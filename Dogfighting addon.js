@@ -6,7 +6,6 @@ setTimeout(() => {
 console.log("DISCLAIMER: You use this add-on software of your own free choice. If you dislike the features this addon adds, you should not use it. Fighter weapons are not a default feature of GeoFS and never should be.")
 }, 10)
 //clearInterval(goInt)
-//clearInterval(gunSoundInt)
 geofs.animation.values.gunsOn = null;
 geofs.animation.values.shotDown = null;
 //This function/interval pair run on a different clock than the rest of the addon,
@@ -74,7 +73,6 @@ e.distance
 e.referencePoint.lla[0] and [1] for lla
 e.referencePoint.lla[2] and geofs.aircraft.instance.llaLocation[2] for altitude in meters
 e.lastUpdate.st.as for airspeed
-hopefully e.lastUpdate.usingGuns
 */
 //ENTIRELY REWORKED SYSTEM:
 
@@ -88,7 +86,7 @@ multiplayer.sendUpdate = function () {
             var c = $.merge($.merge([], a.llaLocation), a.htr),
                 d = V3.scale(xyz2lla(a.rigidBody.getLinearVelocity(), a.llaLocation), 0.001),
                 e = $.merge(d, a.htrAngularSpeed),
-                g = { gr: a.groundContact, as: Math.round(geofs.animation.values.kias) };
+                g = { gr: a.animationValue.shotDown, as: Math.round(geofs.animation.values.kias) };
             a.liveryId && (g.lv = a.liveryId);
             var f = {
                 acid: geofs.userRecord.id,
@@ -111,6 +109,7 @@ multiplayer.sendUpdate = function () {
                     (f.st.sh.ve = geofs.aircraft.instance.rigidBody.getLinearVelocity().concat(geofs.aircraft.instance.rigidBody.getAngularVelocity())),
                     (f.st.sh.st = [geofs.aircraft.instance.engine.on])));
             multiplayer.chatMessage = "";
+				//This is the thing
             multiplayer.lastRequest = geofs.ajax.post(geofs.multiplayerHost + "/update", f, multiplayer.updateCallback, multiplayer.errorCallback);
         }
     } catch (k) {
@@ -135,41 +134,18 @@ if (e.distance <= 1000 && (getBearing(e.referencePoint.lla[0], e.referencePoint.
 		 shootdownNotification = 1
 		 shooting = 1
 		 //This just makes sure that ui.notifications don't clog up on top of each other.
-		 setTimeout(() => {shootdownNotification = 0;shooting = 0},5000)
+		 setTimeout(() => {shootdownNotification = 0; shooting = 0},5000)
 	 }
 }
 //If their "shootdown cue" (communicated by the sendUpdate modification done above) is sent...
-if (e.lastUpdate.is == 1) {
+if (e.lastUpdate.st.gr == 1 && (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617 || e.aircraft == 4251 || e.aircraft == 2310)) {
    crashAircraft()
 	ui.notification.show("You were shot down by " + e.callsign)
 }
+//Object.values(multiplayer.visibleUsers)
    })
 	//Making sure that the external variable is synced to the internal one
    geofs.animation.values.shotDown = shooting
 };
 //Run checkAim at 20 FPS/TPS/whatever, this is fast enough for it to not miss things most of the time but also not lag your computer
 goInt = setInterval(function(){checkAim()},50);
-
-//clearInterval(cameraRotateInt)
-var needCamReset = new Boolean(0)
-function look() {
-   if (geofs.camera.currentModeName == "cockpit" && geofs.animation.values.accZ >= 40) {
-geofs.camera.setRotation(geofs.animation.values.roll * 100, (geofs.animation.values.pitch * 125)-10, 0)
-needCamReset = 1
-   } else if (geofs.camera.currentModeName == "cockpit" && needCamReset == 1) {
-geofs.camera.setRotation(geofs.aircraft.instance.definition.cameras.cockpit.orientation[0], geofs.aircraft.instance.definition.cameras.cockpit.orientation[1], geofs.aircraft.instance.definition.cameras.cockpit.orientation[2])
-needCamReset = 0
-	} else {
-needCamReset = 0
-	}
-}
-cameraRotateInt = setInterval(function(){look()},100)
-
-// C cycles between just follow and cockpit
-geofs.camera.cycle = function(){
-   if (geofs.camera.currentModeName == "cockpit") {
-geofs.camera.set(0)
-   } else {
-geofs.camera.set(1)
-	}
-}
