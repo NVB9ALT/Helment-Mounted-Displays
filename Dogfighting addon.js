@@ -134,16 +134,16 @@ if (e.distance <= 1000 && (getBearing(e.referencePoint.lla[0], e.referencePoint.
 		 shootdownNotification = 1
 		 shooting = 1
 		 //This just makes sure that ui.notifications don't clog up on top of each other.
-		 setTimeout(() => {shootdownNotification = 0;shooting = 0},2000)
+		 setTimeout(() => {shootdownNotification = 0; shooting = 0},2000)
 	 }
 }
 //If their "shootdown cue" (communicated by the sendUpdate modification done above) is sent...
-if (e.lastUpdate.st.gr == 1 && (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617 || e.aircraft == 4251 || e.aircraft == 2310)) {
+if (e.lastUpdate.st.gr == 1 && shootdownNotification == 0 && (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617 || e.aircraft == 4251 || e.aircraft == 2310)) {
    crashAircraft()
 	ui.notification.show("You were shot down by " + e.callsign)
+   shootdownNotification = 1
+   setTimeout(() => {shootdownNotification = 0},2000)
 }
-//console.log(e.lastUpdate.st.gr)
-//Object.values(multiplayer.visibleUsers)
    })
 	//Making sure that the external variable is synced to the internal one
    geofs.animation.values.shotDown = shooting
