@@ -99,7 +99,7 @@ multiplayer.sendUpdate = function () {
                 ti: multiplayer.getServerTime(),
                 m: multiplayer.chatMessage,
                 ci: multiplayer.chatMessageId,
-					 is: geofs.animation.values.shotDown,
+		//is: geofs.animation.values.shotDown,
             };
             multiplayer.flightSharing.status &&
                 multiplayer.flightSharing.peer &&
