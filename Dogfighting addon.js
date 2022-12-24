@@ -14,7 +14,7 @@ function gunSound() {
 if (geofs.animation.values.brakes == 1 && geofs.animation.values.groundContact == 0) {
    if (geofs.aircraft.instance.id == 7 || geofs.aircraft.instance.id == 18 || geofs.aircraft.instance.id == 15 || geofs.aircraft.instance.id == 2581 || geofs.aircraft.instance.id == 2808 || geofs.aircraft.instance.id == 3591 || geofs.aircraft.instance.id == 4172 || geofs.aircraft.instance.id == 3617 || geofs.aircraft.instance.id == 4251) {
 	geofs.animation.values.gunsOn = 1
-   audio.impl.html5.playFile("https://142420819-645052386429616373.preview.editmysite.com/uploads/1/4/2/4/142420819/autocannon-sound.mp3")
+   audio.impl.html5.playFile("https://142420819-645052386429616373.preview.editmysite.com/uploads/1/4/2/4/142420819/autocannon-sound.m4a")
 }
 //this is the special one...
    if (geofs.aircraft.instance.id == 2310) {
