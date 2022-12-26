@@ -138,7 +138,7 @@ if (e.distance <= 1000 && (getBearing(e.referencePoint.lla[0], e.referencePoint.
 	 }
 }
 //If their "shootdown cue" (communicated by the sendUpdate modification done above) is sent...
-if (e.lastUpdate.st.gr == 1 && e.lastUpdate.st.as > 25 && shootdownNotification == 0 && (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 15 || e.aircraft == 2581 || e.aircraft == 2808 || e.aircraft == 3591 || e.aircraft == 4172 || e.aircraft == 3617 || e.aircraft == 4251 || e.aircraft == 2310)) {
+if (e.lastUpdate.st.gr == 1 && e.lastUpdate.st.as > 25 && shootdownNotification == 0 && (e.aircraft == 7 || e.aircraft == 18 || e.aircraft == 4251 || e.aircraft == 4172 || e.aircraft == 3617 || e.aircraft == 3591 || e.aircraft == 2857 || e.aircraft == 2840 || e.aircraft == 2808 || e.aircraft == 2581 || e.aircraft == 15)) {
    crashAircraft()
 	ui.notification.show("You were shot down by " + e.callsign)
    shootdownNotification = 1
