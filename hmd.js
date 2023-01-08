@@ -148,7 +148,7 @@ geofs.aircraft.instance.setup.instruments.helmetMountedDisplay = {"animations": 
 instruments.init(geofs.aircraft.instance.setup.instruments)
 hmdIsActive = 1
 };
-if (geofs.camera.definitions["cockpit"].orientations.current[0] >= 15 || geofs.camera.definitions["cockpit"].orientations.current[0] <= -15) {
+if (geofs.camera.definitions["cockpit"].orientations.current[1] >= 15 || geofs.camera.definitions["cockpit"].orientations.current[1] <= -15) {
    geofs.animation.values.hmdShow = 1
    } else {
 	geofs.animation.values.hmdShow = 0
