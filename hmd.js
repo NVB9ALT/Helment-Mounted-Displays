@@ -142,7 +142,7 @@ instruments.definitions.helmetMountedDisplay = {
         }
 	};
 function checkIT() {
-if (geofs.aircraft.instance.id == 4172 || geofs.aircraft.instance.id == 2857 || geofs.aircraft.instance.id == 7) {
+if (geofs.aircraft.instance.id == 4172 || geofs.aircraft.instance.id == 2857 || geofs.aircraft.instance.id == 7 || (geofs.aircraft.instance.id == 18 && geofs.addonAircraft.isFA18 == 1)) {
 if (hmdIsActive == 0) {
 geofs.aircraft.instance.setup.instruments.helmetMountedDisplay = {"animations": [{"value": "hmdShow", "type": "show", "eq": "1"}]}
 instruments.init(geofs.aircraft.instance.setup.instruments)
