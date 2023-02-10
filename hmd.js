@@ -1,5 +1,8 @@
 var hmdIsActive = new Boolean(0);
 geofs.animation.values.hmdShow = null;
+//Future project: add SA to the HMD - lines along the edges showing the distance and direction of other aircraft
+//along with the type. End result will be sorta like the F/A-18's HMD.
+
 //this is basically the 2.9 HUD, but without the attitude display.
 instruments.definitions.helmetMountedDisplay = {
 "overlay": {
